@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .errorLogin,
+        .errorPassword {
+            visibility: hidden;
+            color: red;
+            font-size: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="primeiroParagrafo">
+        Texto texto texto texto
+    <p class="classeItalico">
+        <i>Itálico</i>
+    </p>
+    </p>
+
+    <ul>
+        <li>
+            item 01
+        </li>
+        <li>
+            item 02
+        </li>
+    </ul>
+    <form onsubmit="enviar()">
+        <input data-id="login" type="text" />
+        <span class="errorLogin">Campo obrigatório</span>
+        <input data-id="password" type="password" />
+        <span class="errorPassword">Campo obrigatório</span>
+        <br />
+        <input type="submit" value="Enviar" />
+    </form>
+    <!-- <button>Enviar <b>dois</b></button> -->
+
+    <script>
+        function enviar() {
+            event.preventDefault();
+
+            const login = document.querySelector("[data-id^='login']")
+            const pwd = document.querySelector("[data-id^='password']")
+
+
+            if (login.value === "") {
+                document.querySelector(".errorLogin").style.visibility = 'visible'
+            } else {
+                document.querySelector(".errorLogin").style.visibility = 'hidden'
+            }
+            if (pwd.value === "") {
+                document.querySelector(".errorPassword").style.visibility = 'visible'
+            } else {
+                document.querySelector(".errorPassword").style.visibility = 'hidden'
+            }
+
+            console.log("login=", login.value)
+            console.log("pwd=", pwd.value)
+            console.log("enviar")
+
+        }
+        // const pParagrafo = document.querySelector("p");
+        // pParagrafo.innerText = "Bem vindo!"
+        // const pItalico = document.querySelector("p.classeItalico")
+        // pItalico.innerHTML = "<i><b>Italico 2</b></i>"
+
+        // const ul = document.querySelectorAll("ul li")[1]
+        // console.log("ul", ul)
+    </script>
+</body>
+
+</html>
