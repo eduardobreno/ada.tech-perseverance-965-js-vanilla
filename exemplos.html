@@ -19,7 +19,6 @@
             border: 1px solid red;
             background-color: chocolate;
         }
-
     </style>
 </head>
 
@@ -40,25 +39,25 @@
         </li>
     </ul>
     <form onsubmit="enviar2()">
-        <input class="login" type="text" />
+        <input name="login" type="text" />
         <span class="errorLogin">Campo obrigatório</span>
-        <input class="password" type="password" />
+        <input name="password" type="password" />
         <span class="errorPassword">Campo obrigatório</span>
         <br />
-        <input type="checkbox" /> Estudou?
+        <input name="estudou" type="checkbox" /> Estudou?
         <br />
-        Sexo:
+        <!-- Sexo:
         <input type="radio" name="sexo" value="M" /> M
         <input type="radio" name="sexo" value="F" /> F
-        <br />
+        <br /> -->
         Data de nascimento:
-        <input type="date" /><br>
-        email:
+        <input name="dtnascimento" type="date" /><br>
+        <!-- email:
         <input type="email" />
         <br />
         Valor:
         <input type="range" step="3000" max="10000" />
-        <input type="color" />
+        <input type="color" /> -->
         <br />
         <input type="submit" value="Enviar" />
         <input type="reset" value="Resetar" />
@@ -75,23 +74,30 @@
         //         }
         //     }))
 
-        function captuarInputs(evt) {
-            if (evt.target.className === "login") {
-                formulario.login = evt.target.value
-            }
-            if (evt.target.className === "password") {
-                formulario.password = evt.target.value
-            }
-        }
+        // function captuarInputs(evt) {
+        //     if (evt.target.className === "login") {
+        //         formulario.login = evt.target.value
+        //     }
+        //     if (evt.target.className === "password") {
+        //         formulario.password = evt.target.value
+        //     }
+        // }
 
-        document.querySelectorAll("input").forEach(item =>
-            item.addEventListener('input', captuarInputs))
+        // document.querySelectorAll("input").forEach(item =>
+        //     item.addEventListener('input', captuarInputs))
 
-        document.querySelectorAll("input").forEach(item =>
-            item.removeEventListener('input', captuarInputs))
+        // document.querySelectorAll("input").forEach(item =>
+        //     item.removeEventListener('input', captuarInputs))
 
         function enviar2() {
             event.preventDefault();
+            const elementos = [...document.querySelector("form").elements]
+            elementos.forEach(el => {
+                if (el.name) {
+                    formulario[el.name] = el.value
+                }
+            })
+
             console.log(formulario);
         }
 
