@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+
+<body>
+    <input id="counter" value="0" readonly />
+    <button id="start">Começar</button>
+    <button id="stop">Stop</button>
+
+    <button id="alerta">Alert()</button>
+
+
+    <script>
+        const start = document.querySelector("#start")
+        const stop = document.querySelector("#stop")
+        const alerta = document.querySelector("#alerta")
+        const counter = document.querySelector("#counter")
+
+        let intervalId;
+        let i = 0
+        start.onclick = () => {
+            clearInterval(intervalId)
+            intervalId = setInterval(() => {
+                counter.value = i++
+            }, 1000);
+        }
+
+        stop.onclick = () => {
+            clearInterval(intervalId)
+        }
+
+
+        alerta.onclick = async () => {
+            try {
+                // const retorno = tarefaPesada()
+                // console.log("retorno no click", retorno)
+                tarefaPesada()
+                console.log("faz outra coisa")
+            } catch (error) {
+                console.log("entrou no catch", error)
+            }
+        }
+
+
+        function tarefaPesada() {
+            return new Promise((resolve, reject) => {
+                const timeoutID = setTimeout(() => {
+                    const retorno = " ola";
+                    console.log("dentro do timeout")
+                    resolve(retorno)
+                }, 5000);
+
+                setTimeout(() => {
+                    clearTimeout(timeoutID)
+                    console.log("acabou o tempo")
+                    reject("Acabou o tempo")
+                }, 1000);
+            })
+        }
+
+
+    </script>
+</body>
+
+</html>
