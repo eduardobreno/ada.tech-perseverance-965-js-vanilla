@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File</title>
+</head>
+
+<body>
+    <input type="file" id="file">
+    <img />
+    <script>
+        const file = document.querySelector("#file")
+        const img = document.querySelector("img")
+
+        file.addEventListener('change', (event) => {
+            readFile(event.target.files[0])
+        })
+
+
+        function readFile(file) {
+            const reader = new FileReader()
+            reader.readAsDataURL(file)
+            reader.onload = (event) => {
+                localStorage.setItem("minhaImagem", event.target.result)
+                img.src = event.target.result
+            }
+        }
+
+        window.onload = () => {
+            img.src = localStorage.getItem("minhaImagem")
+        }
+
+    </script>
+
+</body>
+
+</html>
