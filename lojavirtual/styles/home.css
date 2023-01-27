@@ -1,0 +1,61 @@
+header {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+}
+
+.logo,
+.cart {
+  max-height: 50px;
+  max-width: 50px;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  color: #fff;
+  padding: 5px;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(6, 140px);
+  justify-content: center;
+  padding-top: 12px;
+  gap: 12px;
+}
+
+.productPod {
+  border: 1px solid black;
+  max-width: 100px;
+  max-height: 200px;
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: space-evenly;
+}
+
+.productPod p {
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.productThumb {
+  max-width: 100px;
+  max-height: 75px;
+  object-fit: cover;
+}
