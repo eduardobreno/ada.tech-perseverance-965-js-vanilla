@@ -1,3 +1,5 @@
+import { createProductPod } from "./products";
+
 function getCartProducts() {
   const cart = localStorage.getItem("cart");
   return cart ? JSON.parse(cart) : [];
@@ -10,6 +12,14 @@ export function updatedCartCount() {
   }, 0);
 
   document.querySelector(".badge").innerHTML = total;
+}
+
+export function cartDetails() {
+  const products = getCartProducts();
+  document.querySelector(".cartDetails").innerHTML = "";
+  products.forEach((product) => {
+    createProductPod(product, ".cartDetails");
+  });
 }
 
 export function getProductFromCart(product) {

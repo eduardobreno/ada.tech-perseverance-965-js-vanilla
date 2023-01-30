@@ -1,10 +1,15 @@
-import { addToCart, getProductFromCart, updatedCartCount } from "./cart";
+import {
+  addToCart,
+  cartDetails,
+  getProductFromCart,
+  updatedCartCount,
+} from "./cart";
 
 export function minhaFunc() {
   alert("oi!");
 }
 
-export function createProductPod(product) {
+export function createProductPod(product, target) {
   //   const pod = document.createElement("div");
   //   const thumb = document.createElement("img");
   //   const title = document.createElement("p");
@@ -19,12 +24,12 @@ export function createProductPod(product) {
   //   pod.appendChild(price);
   const productInCart = getProductFromCart(product);
 
-  const btnAddId = `btn_add_${product.id}`;
+  const btnAddId = `btn_add_${product.id}_${target.replace(".", "")}`;
   const content = `
     <div class="productPod">
         <img class="productThumb" src=${product.thumbnail}>
         <p class="productTitle">${product.title}</p>
-        <p>${productInCart?.qtd || ''}</p>
+        <p>${productInCart?.qtd || ""}</p>
         <p>${product.price}</p>
         ${
           productInCart
@@ -36,24 +41,25 @@ export function createProductPod(product) {
     </div>
 `;
 
-  document.querySelector("main").insertAdjacentHTML("beforeend", content);
+  document.querySelector(target).insertAdjacentHTML("beforeend", content);
 
   document.querySelector(`#${btnAddId}`).addEventListener("click", () => {
     addToCart(product);
-    updatedCartCount()
+    updatedCartCount();
     refresh();
   });
 }
 
 export function refresh() {
-  document.querySelector("main").innerHTML = "";
   initProduct();
 }
 
 export async function initProduct() {
   const response = await fetch("https://dummyjson.com/products");
   const data = await response.json();
+  document.querySelector("main").innerHTML = "";
   data.products.forEach((product) => {
-    createProductPod(product);
+    createProductPod(product, "main");
   });
+  cartDetails();
 }
